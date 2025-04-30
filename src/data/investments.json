@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nome": "CDB",
+    "descricao": "Certificado de Depósito Bancário com rentabilidade de 13% ao ano.",
+    "investimentoMinimo": 100,
+    "rentabilidadeAnual": 13,
+    "icone": "Landmark",
+    "cor": "#3b82f6",
+    "prazoMeses": 12,
+    "risco": "baixo",
+    "fgc": true
+  },
+  {
+    "id": 2,
+    "nome": "Tesouro Direto",
+    "descricao": "Título do governo com rentabilidade de 12% ao ano.",
+    "investimentoMinimo": 50,
+    "rentabilidadeAnual": 12,
+    "icone": "PiggyBank",
+    "cor": "#10b981",
+    "prazoMeses": 12,
+    "risco": "baixo",
+    "fgc": false
+  },
+  {
+    "id": 3,
+    "nome": "Debênture",
+    "descricao": "Investimento em dívida privada com rentabilidade de 16% ao ano.",
+    "investimentoMinimo": 200,
+    "rentabilidadeAnual": 16,
+    "icone": "Coins",
+    "cor": "#facc15",
+    "prazoMeses": 12,
+    "risco": "médio",
+    "fgc": false
+  },
+  {
+    "id": 4,
+    "nome": "Fundo de Ações",
+    "descricao": "Investimento em ações com rentabilidade de 15% ao ano.",
+    "investimentoMinimo": 500,
+    "rentabilidadeAnual": 15,
+    "icone": "ChartBar",
+    "cor": "#ef4444",
+    "prazoMeses": 12,
+    "risco": "alto",
+    "fgc": false
+  },
+  {
+    "id": 5,
+    "nome": "Poupança",
+    "descricao": "Investimento em poupança com rentabilidade de 6% ao ano.",
+    "investimentoMinimo": 50,
+    "rentabilidadeAnual": 6,
+    "icone": "Skull",
+    "cor": "#6366f1",
+    "prazoMeses": 12,
+    "risco": "baixo",
+    "fgc": true
+  }
+]
