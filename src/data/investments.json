@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "nome": "CDB",
+    "nome": "CDB Champagnat",
     "descricao": "Certificado de Depósito Bancário com rentabilidade de 13% ao ano.",
     "investimentoMinimo": 100,
     "rentabilidadeAnual": 13,
@@ -17,7 +17,7 @@
     "descricao": "Título do governo com rentabilidade de 12% ao ano.",
     "investimentoMinimo": 50,
     "rentabilidadeAnual": 12,
-    "icone": "PiggyBank",
+    "icone": "Activity",
     "cor": "#10b981",
     "prazoMeses": 12,
     "risco": "baixo",
@@ -58,5 +58,17 @@
     "prazoMeses": 12,
     "risco": "baixo",
     "fgc": true
+  },
+  {
+    "id": 6,
+    "nome": "APTIV",
+    "descricao": "Investimento ETF da empresa APTIV.",
+    "investimentoMinimo": 2000,
+    "rentabilidadeAnual": 14,
+    "icone": "Skull",
+    "cor": "#f224ae",
+    "prazoMeses": 12,
+    "risco": "médio",
+    "fgc": false
   }
 ]

@@ -1,50 +1,51 @@
-import { useState, useEffect } from "react";
-import investmentsData from "./data/investments.json";
-import configData from "./data/config.json";
-import InvestmentList from "./components/InvestmentList";
-import Portfolio from "./components/Portfolio";
-import InvestmentModal from "./components/InvestmentModal";
-import Balance from "./components/Balance";
 import Logo from './assets/Logo.svg';
 import LogoGali from './assets/logo-gali.png';
-import { formatCurrency } from "./utils/formatCurrency";
+import Balance from './components/Balance';
+import ListaDeInvestimentos from './components/ListaDeInvestimentos';
+import Portfolio from './components/Portfolio';
+import data from './data/investments.json';
+import { useState } from "react";
 
 export default function App() {
-  const [balance, setBalance] = useState(configData.initialBalance);
-  const [investments, setInvestments] = useState([]);
-  const [portfolio, setPortfolio] = useState([]);
-  const [selectedInvestment, setSelectedInvestment] = useState(null);
+  const [carteira, setCarteira] = useState([]);
+  const [saldo, setSaldo] = useState(10000);
 
-  useEffect(() => {
-    setInvestments(investmentsData);
-  }, []);
-
-  const totalInvested = portfolio.reduce((sum, inv) => sum + inv.amount, 0);
-  const totalAssets = portfolio.length;
-
-  const handleInvest = (investment, amount) => {
-    if (balance >= amount) {
-      setBalance(balance - amount);
-      setPortfolio(prev => {
-        const existing = prev.find(inv => inv.id === investment.id);
-        return existing ? prev.map(inv => inv.id === investment.id ? { ...inv, amount: inv.amount + amount } : inv) : [...prev, { ...investment, amount }];
-      });
-    } else {
-      alert("Saldo insuficiente para este investimento.");
+  function investir(investimento) {
+    const valor = Number(prompt("Qual valor deseja investir?"));
+    if (!valor || valor < investimento.investimentoMinimo) {
+      alert(`Valor mínimo: ${investimento.investimentoMinimo}`);
+      return;
     }
-  };
+    if (valor > saldo) {
+      alert("Saldo insuficiente.");
+      return;
+    }
+    setSaldo(s => s - valor);
+    setCarteira(prev => {
+      const existente = prev.find(i => i.id === investimento.id);
+      if (existente) {
+        return prev.map(i => i.id === investimento.id ? { ...i, valorInvestido: i.valorInvestido + valor } : i);
+      }
+      return [...prev, { ...investimento, valorInvestido: valor }];
+    });
+  }
+
+  const totalInvestido = carteira.reduce((soma, inv) => soma + inv.valorInvestido, 0);
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
       <div className="max-w-5xl mx-auto">
-        <div className="flex items-center mb-6 gap-6 justify-center">
-          <img src={Logo} alt="Logo" className="h-10" />
-          <img src={LogoGali} alt="Logo Gali" className="h-16" />
-        </div>
-        <Balance balance={formatCurrency(balance)} totalInvested={formatCurrency(totalInvested)} totalAssets={totalAssets} portfolio={portfolio} />
-        <Portfolio portfolio={portfolio} />
-        <InvestmentList investments={investments} onInvest={setSelectedInvestment} />
-        {selectedInvestment && <InvestmentModal investment={selectedInvestment} onClose={() => setSelectedInvestment(null)} onInvest={handleInvest} />}
+        <header className="flex items-center mb-6 gap-6 justify-between">
+          <img src={Logo} width="170px" />
+          <img src={LogoGali} width="270px" />
+        </header>
+        <Balance balance={saldo} totalInvested={totalInvestido} portfolio={carteira} totalAssets={carteira.length} />
+        {/* Portfolio simplificado */}
+        <Portfolio portfolio={carteira} />
+        <ListaDeInvestimentos 
+          investimentos={data} 
+          onInvest={investir} 
+        />
       </div>
     </div>
   );
