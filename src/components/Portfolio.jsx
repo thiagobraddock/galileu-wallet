@@ -1,9 +1,3 @@
-function calculateCompoundInterest(amount, annualRate, months) {
-  const years = months / 12;
-  const finalAmount = amount * Math.pow(1 + annualRate / 100, years);
-  return finalAmount.toFixed(2);
-}
-
 export default function Portfolio({ portfolio }) {
   if (!portfolio.length) return null;
   return (
